@@ -31,7 +31,7 @@ protocol ThumbnailGenerator {
     func generate(size: CGSize) -> UIImage?
 }
 
-final class ImageThumbnailGenerator: ThumbnailGenerator {
+final public class ImageThumbnailGenerator: ThumbnailGenerator {
     private let url: URL
 
     init(url: URL) {

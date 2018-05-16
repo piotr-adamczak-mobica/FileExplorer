@@ -25,7 +25,7 @@
 
 import Foundation
 
-final class FileViewModel {
+final public class FileViewModel {
     typealias FileAttributes = [FileAttributeKey: Any]
 
     var title: String
