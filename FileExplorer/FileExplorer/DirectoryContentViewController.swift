@@ -218,7 +218,7 @@ extension DirectoryContentViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        if kind == UICollectionElementKindSectionHeader {
+        if kind == UICollectionView.elementKindSectionHeader {
             let header = collectionView.dequeueReusableHeader(ofClass: CollectionViewHeader.self, for: indexPath) as CollectionViewHeader
             header.sortModeChangeAction = viewModel.sortModeChangeAction
             header.sortMode = viewModel.sortMode
@@ -226,7 +226,7 @@ extension DirectoryContentViewController {
                 header.layoutIfNeeded()
             }
             return header
-        } else if kind == UICollectionElementKindSectionFooter {
+        } else if kind == UICollectionView.elementKindSectionFooter {
             return collectionView.dequeueReusableFooter(ofClass: CollectionViewFooter.self, for: indexPath) as CollectionViewFooter
         } else {
             fatalError()

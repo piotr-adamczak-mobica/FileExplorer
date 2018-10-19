@@ -185,7 +185,7 @@ final class TitleView: UIView {
     }
 
     override var intrinsicContentSize: CGSize {
-        return CGSize(width: UIViewNoIntrinsicMetric, height: 42.0)
+        return CGSize(width: UIView.noIntrinsicMetric, height: 42.0)
     }
 }
 
