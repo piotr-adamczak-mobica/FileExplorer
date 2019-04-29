@@ -31,7 +31,7 @@ protocol DirectoryContentViewModelDelegate: class {
     func directoryViewModel(_ viewModel: DirectoryContentViewModel, didSelectItem item: Item<Any>)
 }
 
-enum SortMode {
+public enum SortMode {
     case name
     case date
 }
@@ -168,7 +168,7 @@ final class DirectoryContentViewModel {
         self.fileSpecifications = fileSpecifications
         self.configuration = configuration
         self.fileService = fileService
-        self.sortMode = .name
+        self.sortMode = configuration.actionsConfiguration.defaultSortMode
 
         let filteringConfiguration = configuration.filteringConfiguration
         self.allItems = item.resource.filter {  filteringConfiguration.fileFilters.count == 0 || filteringConfiguration.fileFilters.matchesItem($0) }

@@ -63,6 +63,9 @@ public final class FileExplorerViewController: UIViewController {
     /// A Boolean value indicating whether multiple files and/or directories can be choosen at a time.
     public var allowsMultipleSelection: Bool = true
 
+    /// Default sort mode for directories
+    public var defaultSortMode: SortMode = .name
+
     /// Filters that determine which files are displayed by file explorer view controller.
     ///
     /// Results of multiple filters are combined and displayed by file explorer view controller. All files are displayed if `fileFilters` array is empty.
@@ -117,7 +120,8 @@ public final class FileExplorerViewController: UIViewController {
                                                         canRemoveDirectories: canRemoveDirectories,
                                                         canChooseFiles: canChooseFiles,
                                                         canChooseDirectories: canChooseDirectories,
-                                                        allowsMultipleSelection: allowsMultipleSelection)
+                                                        allowsMultipleSelection: allowsMultipleSelection,
+                                                        defaultSortMode: defaultSortMode)
         let filteringConfiguration = FilteringConfiguration(fileFilters: fileFilters, ignoredFileFilters: ignoredFileFilters)
         let configuration = Configuration(actionsConfiguration: actionsConfiguration, filteringConfiguration: filteringConfiguration)
 
