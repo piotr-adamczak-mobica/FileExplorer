@@ -78,12 +78,16 @@ final class FileItemPresentationCoordinator {
 }
 
 extension FileItemPresentationCoordinator: ActionsViewControllerDelegate {
-    func actionsViewControllerDidRequestShare(_ controller: ActionsViewController) {
+    func actionsViewControllerDidRequestShare(_ controller: ActionsViewController, sender: UIBarButtonItem?) {
         let activityViewController = UIActivityViewController(activityItems: [item.url], applicationActivities: nil)
+        if let popOver = activityViewController.popoverPresentationController {
+            popOver.sourceView = controller.view
+            popOver.barButtonItem = sender
+        }
         navigationController?.present(activityViewController, animated: true, completion: nil)
     }
 
-    func actionsViewControllerDidRequestRemoval(_ controller: ActionsViewController) {
+    func actionsViewControllerDidRequestRemoval(_ controller: ActionsViewController, sender: UIBarButtonItem?) {
         CATransaction.begin()
         CATransaction.setCompletionBlock { [weak self] in
             guard let strongSelf = self else { return }

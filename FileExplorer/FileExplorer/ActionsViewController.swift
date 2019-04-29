@@ -26,8 +26,8 @@
 import UIKit
 
 protocol ActionsViewControllerDelegate: class {
-    func actionsViewControllerDidRequestRemoval(_ controller: ActionsViewController)
-    func actionsViewControllerDidRequestShare(_ controller: ActionsViewController)
+    func actionsViewControllerDidRequestRemoval(_ controller: ActionsViewController, sender: UIBarButtonItem?)
+    func actionsViewControllerDidRequestShare(_ controller: ActionsViewController, sender: UIBarButtonItem?)
 }
 
 final class ActionsViewController: UIViewController {
@@ -58,9 +58,9 @@ final class ActionsViewController: UIViewController {
         toolbar.sizeToFit()
         toolbar.pinToBottom(of: view)
         toolbar.items = [
-            UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(handleShareButtonTap)),
+            UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(handleShareButtonTap(sender:))),
             UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil),
-            UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(handleTrashButtonTap))
+            UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(handleTrashButtonTap(sender:)))
         ]
 
         addContentChildViewController(contentViewController, insets: UIEdgeInsets(top: 0, left: 0, bottom: toolbar.bounds.height, right: 0))
@@ -70,12 +70,12 @@ final class ActionsViewController: UIViewController {
     // MARK: Actions
     
     @objc
-    private func handleShareButtonTap() {
-        delegate?.actionsViewControllerDidRequestShare(self)
+    private func handleShareButtonTap(sender: UIBarButtonItem?) {
+        delegate?.actionsViewControllerDidRequestShare(self, sender: sender)
     }
 
     @objc
-    private func handleTrashButtonTap() {
-        delegate?.actionsViewControllerDidRequestRemoval(self)
+    private func handleTrashButtonTap(sender: UIBarButtonItem?) {
+        delegate?.actionsViewControllerDidRequestRemoval(self, sender: sender)
     }
 }
